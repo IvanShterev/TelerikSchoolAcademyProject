@@ -5,15 +5,16 @@ import com.example.demo.entities.base.ModelEntity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "themes")
-public class Theme implements ModelEntity {
-    private String themeName;
+@Table(name = "posts")
+public class Post implements ModelEntity {
+    private String postName;
     private String description;
     private int id;
 
-    public Theme(){
+    public Post() {
 
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -27,16 +28,16 @@ public class Theme implements ModelEntity {
         this.id = id;
     }
 
-    @Column(name = "themeName", length = 25 , nullable = false)
-    public String getThemeName() {
-        return themeName;
+    @Column(name = "postName", length = 25, nullable = false)
+    public String getPostName() {
+        return postName;
     }
 
-    public void setThemeName(String themeName) {
-        this.themeName = themeName;
+    public void setPostName(String postName) {
+        this.postName = postName;
     }
 
-    @Column(name = "description", length = 25 , nullable = false)
+    @Column(name = "description", length = 25, nullable = false)
     public String getDescription() {
         return description;
     }

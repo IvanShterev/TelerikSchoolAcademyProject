@@ -1,7 +1,7 @@
 package com.example.demo.web;
 
-import com.example.demo.entities.Theme;
-import com.example.demo.services.base.ThemesService;
+import com.example.demo.entities.Post;
+import com.example.demo.services.base.PostsService;
 import com.example.demo.services.base.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,19 +13,19 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    private final ThemesService themesService;
+    private final PostsService postsService;
     private final UsersService usersService;
 
 
     @Autowired
-    public HomeController(ThemesService themesService, UsersService usersService) {
-        this.themesService = themesService;
+    public HomeController(PostsService postsService, UsersService usersService) {
+        this.postsService = postsService;
         this.usersService = usersService;
     }
     @GetMapping ("/")
     public String index(Model model) {
-        List<Theme> themes = themesService.getAllThemes();
-        model.addAttribute("themes", themes);
+        List<Post> posts = postsService.getAllPosts();
+        model.addAttribute("posts", posts);
         model.addAttribute("user",usersService.getCurrentUser());
         return "index";
     }

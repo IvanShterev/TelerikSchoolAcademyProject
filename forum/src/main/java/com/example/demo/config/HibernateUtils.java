@@ -1,6 +1,6 @@
 package com.example.demo.config;
 
-import com.example.demo.entities.Theme;
+import com.example.demo.entities.Post;
 import com.example.demo.entities.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -16,7 +16,7 @@ public class HibernateUtils {
         org.hibernate.cfg.Configuration configuration = new org.hibernate.cfg.Configuration()
             .configure();
 
-        configuration.addAnnotatedClass(Theme.class);
+        configuration.addAnnotatedClass(Post.class);
         configuration.addAnnotatedClass(User.class);
 
 

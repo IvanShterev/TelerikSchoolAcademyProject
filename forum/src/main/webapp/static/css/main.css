@@ -2,6 +2,24 @@ header {
 text-align : left
 }
 
+h1{
+text-align : center;
+}
+
+a{
+background-color : transparent;
+font-size : large;
+}
+
+
+form{
+text-align : center;
+}
+
+table{
+text-align : center;
+width : 100%;
+}
 
 body {
   background: #E0FFFF;

@@ -18,11 +18,12 @@ public class UsersController {
     private final UsersService usersService;
 
     @Autowired
-    public UsersController(UsersService usersService) {
+    public UsersController(UsersService usersService)
+    {
         this.usersService = usersService;
     }
 
-    @GetMapping("/auth/register")
+    @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("user", new User());
         return "auth/register";
@@ -32,7 +33,7 @@ public class UsersController {
     public String register(@ModelAttribute User user, Principal principal
     ) {
         usersService.create(user);
-        return "auth/register";
+        return "redirect:/login";
     }
 //    } {
 //        usersService.create(user);
@@ -56,17 +57,17 @@ public class UsersController {
 //
 //        return "users/profile";
 //    }
-
-    @GetMapping("/auth/login")
+//
+    @GetMapping("/login")
     String login() {
         return "auth/login";
     }
-
-    @PostMapping("/auth/login")
-    public String login(@ModelAttribute User user) {
-        UserDetails current = usersService.loadUserByUsername(user.getUsername());
-        usersService.login(current);
-        return "redirect:/";
-    }
+//
+//    @PostMapping("/auth/login")
+//    public String login(@ModelAttribute User user) {
+//        UserDetails current = usersService.loadUserByUsername(user.getUsername());
+//        usersService.login(current);
+//        return "redirect:/";
+//    }
 
 }
