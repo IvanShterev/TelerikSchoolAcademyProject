@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 public class PostsServiceImpl implements PostsService {
 
     private final GenericRepository<Post> postsRepository;
+
     private final Validator<Post> postValidator;
 
     public PostsServiceImpl(GenericRepository<Post> postsRepository, Validator<Post> postValidator) {
@@ -50,4 +51,17 @@ public class PostsServiceImpl implements PostsService {
 
         postsRepository.create(post);
     }
+
+    @Override
+    public void deletePost(int id) {
+        Post post = this.getPostById(id);
+        postsRepository.delete(post);
+    }
+
+//    @Override
+//    public void addCommentToPost(int id, String content) {
+//        Post post = postsRepository.getById(id);
+//        TODO:
+//         post.addComment(content);
+//    }
 }

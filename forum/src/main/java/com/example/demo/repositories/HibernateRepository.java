@@ -68,6 +68,20 @@ public class HibernateRepository<T extends ModelEntity> implements GenericReposi
         return entity;
     }
 
+    @Override
+    public T delete(T entity) {
+
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.delete(entity);
+
+        transaction.commit();
+        session.close();
+        return null;
+    }
+
+
     public Class<T> getEntityClass() {
         return entityClass;
     }

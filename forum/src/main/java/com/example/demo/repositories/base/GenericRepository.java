@@ -10,4 +10,6 @@ public interface GenericRepository<T extends ModelEntity> {
     T getById(int id);
 
     T create(T entity);
+
+    T delete(T entity);
 }

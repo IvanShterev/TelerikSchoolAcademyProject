@@ -10,6 +10,63 @@
     <link rel="stylesheet" href="/static/css/main.css">
 </head>
 <body>
-<h1 th:inline="text" th:text="${post.postName}"/>
+<header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+    <div class="navbar-nav">
+        <ul class="navbar-nav bd-navbar-nav flex-row">
+            <li class="nav-item">
+                <a href="/" class="nav-link">Posts</a>
+            </li>
+            <li class="nav-item">
+                <a href="/login" class="nav-link" th:unless="${#httpServletRequest.remoteUser}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a href="/register" class="nav-link" th:unless="${#httpServletRequest.remoteUser}">Register</a>
+            </li>
+            <li class="nav-item">
+                <a href="/logout" class="nav-link" th:if="${#httpServletRequest.remoteUser}">Log out</a>
+            </li>
+        </ul>
+    </div>
+    <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+        <li class="nav-item" th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</li>
+    </ul>
+</header>
+<!--<h1 th:inline="text" th:text="${post.postName}"/>-->
+<!---->
+<!--<h1 th:inline="text" th:text="${post.getUser().username}"/>-->
+
+<div class="container">
+    <table class="table-striped table-light table-bordered">
+        <thead>
+        <tr>
+            <th>Post</th>
+            <th>Description</th>
+            <th>Author</th>
+            <th>Delete the post</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+
+            <td>
+                <a th:text="${post.postName}"></a>
+            </td>
+            <td>
+                <a th:text="${post.description}"></a>
+            </td>
+            <td>
+                <a th:text="${post.getUser().username}"></a>
+            </td>
+            <td>
+                <form action="#" th:action="@{/delete/} + ${id}" method="post">
+                    <!--<input type="text" th:value="${post.getId()}" name="id"/>-->
+                    <input type="submit" value="Delete" class="btn btn-primary"/>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
 </body>
 </html>

@@ -10,6 +10,7 @@ public class Post implements ModelEntity {
     private String postName;
     private String description;
     private int id;
+    private User user;
 
     public Post() {
 
@@ -18,7 +19,6 @@ public class Post implements ModelEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @Override
     public int getId() {
         return id;
     }
@@ -33,6 +33,7 @@ public class Post implements ModelEntity {
         return postName;
     }
 
+
     public void setPostName(String postName) {
         this.postName = postName;
     }
@@ -45,4 +46,34 @@ public class Post implements ModelEntity {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+//    @ManyToMany
+//    @JoinColumn(na)
+//    public Message getMessage() {
+//        return message;
+//    }
+//
+//    public void setMessage(Message message) {
+//        this.message = message;
+//    }
+
+//    @Override
+//    public String toString() {
+//        return "Post{" +
+//                "id=" + id +
+//                ", postName='" + postName + '\'' +
+//                ", description='" + description + '\'' +
+//                ", user ='" + user.getUsername() + '\'' +
+//                '}';
+//    }
 }

@@ -42,4 +42,9 @@ public class InMemoryRepository<T extends ModelEntity> implements GenericReposit
         this.entities.add(entity);
         return entity;
     }
+
+    @Override
+    public T delete(T entity) {
+        return null;
+    }
 }

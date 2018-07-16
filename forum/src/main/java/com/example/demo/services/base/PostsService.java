@@ -13,4 +13,8 @@ public interface PostsService {
     Post getPostById(int id);
 
     void createPost(Post post) throws InvalidObjectException;
+
+    void deletePost(int id);
+
+//    void addCommentToPost(int id, String content);
 }

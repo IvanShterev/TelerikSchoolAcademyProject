@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 
 @Controller
@@ -18,8 +18,7 @@ public class UsersController {
     private final UsersService usersService;
 
     @Autowired
-    public UsersController(UsersService usersService)
-    {
+    public UsersController(UsersService usersService) {
         this.usersService = usersService;
     }
 
@@ -40,7 +39,7 @@ public class UsersController {
 //        return "auth/register";
 //    }
 
-//    @GetMapping("/users/{username}")
+    //    @GetMapping("/users/{username}")
 //    public String profile(@PathVariable String username, Model model, Principal principal) {
 //        User profile = usersService.getUserByUsername(username);
 //        String title = profile.getUsername();
@@ -58,16 +57,35 @@ public class UsersController {
 //        return "users/profile";
 //    }
 //
-    @GetMapping("/login")
-    String login() {
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
         return "auth/login";
     }
-//
-//    @PostMapping("/auth/login")
-//    public String login(@ModelAttribute User user) {
-//        UserDetails current = usersService.loadUserByUsername(user.getUsername());
-//        usersService.login(current);
+
+//    @GetMapping("/login")
+//    public String login(Model model, @RequestParam Boolean error) {
+//        model.addAttribute("error", error);
+//        return "auth/login";
+//    }
+
+
+//    @RequestMapping(value="/auth/login", method = RequestMethod.POST)
+//    public @ResponseBody String updateUser(@RequestBody User user){
+//        usersService.getCurrentUser();
 //        return "redirect:/";
 //    }
+    //
+//    @RequestMapping(value = "/auth/login", method = RequestMethod.POST)
+//    public String CheckLogin(Model model) {
+//        return "redirect:/forum/0";
+//    }
+//    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpServletRequest request) {
+        HttpSession httpSession = request.getSession();
+        httpSession.invalidate();
+        return "redirect:/login";
+    }
 
 }
